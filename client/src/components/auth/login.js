@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import classnames from "classnames";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-function Login() {
+import { loginUser } from "../../actions/authActions";
+
+function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -27,11 +30,19 @@ function Login() {
       email,
       password
     };
-    axios
-      .post("/api/users/login", loginData)
-      .then(result => console.log(result.data))
-      .catch(errors => setErrors(errors.response.data));
+
+    props.loginUser(loginData, props.history);
   }
+
+  useEffect(() => {
+    if (props.auth.isAuthenticated) {
+      props.history.push("/dashboard");
+    }
+
+    if (props.errors) {
+      setErrors(props.errors);
+    }
+  });
 
   return (
     <div className="login">
@@ -82,4 +93,18 @@ function Login() {
   );
 }
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);
