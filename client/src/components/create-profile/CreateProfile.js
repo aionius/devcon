@@ -125,7 +125,7 @@ function CreateProfile(props) {
     socialInputs = (
       <div>
         <InputGroup
-          placeholder="Twitter"
+          placeholder="Twitter Profile URL"
           name="twitter"
           icon="fab fa-twitter"
           value={twitter}
@@ -133,7 +133,7 @@ function CreateProfile(props) {
           error={errors.twitter}
         />
         <InputGroup
-          placeholder="Facebook"
+          placeholder="Facebook Page URL"
           name="facebook"
           icon="fab fa-facebook"
           value={facebook}
@@ -141,7 +141,7 @@ function CreateProfile(props) {
           error={errors.facebook}
         />
         <InputGroup
-          placeholder="Linkedin"
+          placeholder="Linkedin Profile URL"
           name="linkedin"
           icon="fab fa-linkedin"
           value={linkedin}
@@ -149,7 +149,7 @@ function CreateProfile(props) {
           error={errors.linkedin}
         />
         <InputGroup
-          placeholder="Youtube"
+          placeholder="Youtube Channel URL"
           name="youtube"
           icon="fab fa-youtube"
           value={youtube}
@@ -157,7 +157,7 @@ function CreateProfile(props) {
           error={errors.youtube}
         />
         <InputGroup
-          placeholder="Instagram"
+          placeholder="Instagram Page URL"
           name="instagram"
           icon="fab fa-instagram"
           value={instagram}
