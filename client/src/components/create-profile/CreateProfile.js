@@ -6,6 +6,7 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
+import { createProfile } from "../../actions/profileActions";
 
 function CreateProfile(props) {
   const [displaySocialInputs, setDisplaySocialInputs] = useState(false);
@@ -73,6 +74,24 @@ function CreateProfile(props) {
 
   function onSubmit(event) {
     event.preventDefault();
+
+    const profileData = {
+      handle,
+      company,
+      website,
+      location,
+      status,
+      skills,
+      githubusername,
+      bio,
+      twitter,
+      facebook,
+      linkedin,
+      youtube,
+      instagram
+    };
+
+    props.createProfile(profileData, props.history);
   }
 
   useEffect(() => {
@@ -167,6 +186,7 @@ function CreateProfile(props) {
       </div>
     );
   }
+
   return (
     <div className="create-profile">
       <div className="container">
@@ -245,6 +265,7 @@ function CreateProfile(props) {
               />
               <div className="mb-3">
                 <button
+                  type="button"
                   onClick={() => {
                     setDisplaySocialInputs(!displaySocialInputs);
                   }}
@@ -280,5 +301,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  { createProfile }
 )(CreateProfile);
